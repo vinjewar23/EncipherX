@@ -45,6 +45,22 @@ for (let i = 0; i < numParticles; i++) {
     particles.push(new Particle(x, y, speedX, speedY));
 }
 
+const workshopDetails = "Workshop\n\n\nDetails"; // Added line break
+const workshopFont = "120px Monoton, cursive";
+const workshopColor = "#ffffff"; // White color
+
+function drawWorkshopDetails() {
+    ctx.font = workshopFont;
+    ctx.fillStyle = workshopColor;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle"; // Center vertically
+    const lines = workshopDetails.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+        const yPos = canvas.height / 2 + (i - (lines.length - 1) / 2) * 60; // Adjusted vertical position
+        ctx.fillText(lines[i], canvas.width / 2, yPos);
+    }
+}
+
 function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -53,7 +69,7 @@ function animate() {
         particle.update();
         particle.draw();
     }
-    
+
     for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
@@ -70,6 +86,10 @@ function animate() {
             }
         }
     }
+
+    drawWorkshopDetails(); // Move text rendering to the end
 }
 
 animate();
+
+

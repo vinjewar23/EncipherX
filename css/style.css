@@ -7111,7 +7111,7 @@ button:hover::after {
 /* about us section starts */
 
 .about{
-  background: url('/img/encipher/technex.png') no-repeat right;
+  background: url("/img/encipher/technex.png") no-repeat right;
   background-size: 45%;
   background-color: #000;
   overflow: hidden;

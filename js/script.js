@@ -1,95 +1,112 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+$(document).ready(function() {
+    var slider = Slider.init();
+    showFirstSlide(); // Call the function to show the first slide after the page loads
+  });
 
-const navbar = document.querySelector("nav");
+  var Slider = (function() {
+    var total, $slide, $slider, sliderWidth, increment = 120;
 
-canvas.width = navbar.clientWidth;
-canvas.height = navbar.clientHeight;
+    var on = function() {
+      $slider = $(".slider");
+      $slide = $(".slide");
+      sliderWidth = $slider.width();
+      total = $slide.length;
+      position();
+    };
 
-class Particle {
-    constructor(x, y, speedX, speedY) {
-        this.x = x;
-        this.y = y;
-        this.speedX = speedX;
-        this.speedY = speedY;
-    }
+    var position = function() {
+      var sign,
+        half = $(".active").index(),
+        x = 0,
+        z = 0,
+        zindex,
+        scaleX = 1.3,
+        scaleY = 1.3,
+        transformOrigin;
 
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+      $slide.each(function(index, element) {
+        scaleX = scaleY = 1;
+        transformOrigin = sliderWidth / 2;
 
-        if (this.x > canvas.width || this.x < 0) {
-            this.speedX = -this.speedX;
+        if (index < half) {
+          sign = 1;
+          zindex = index + 1;
+          x = sliderWidth / 2 - increment * (half - index + 1);
+          z = -increment * (half - index + 1);
+        } else if (index > half) {
+          sign = -1;
+          zindex = total - index;
+          x = sliderWidth / 2 + increment * (index - half + 1);
+          z = -increment * (index - half + 1);
+        } else {
+          sign = 0;
+          zindex = total;
+          x = sliderWidth / 2;
+          z = 1;
+          scaleX = scaleY = 1.2;
+          transformOrigin = "initial";
         }
-        if (this.y > canvas.height || this.y < 0) {
-            this.speedY = -this.speedY;
-        }
-    }
 
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = "#ed1c24";
-        ctx.fill();
-    }
-}
+        $(element).css({
+          transform:
+            "translate3d(" +
+            calculateX(x, sign, 300) +
+            "px, 0," +
+            z +
+            "px) scale3d(" +
+            scaleX +
+            "," +
+            scaleY +
+            ", 1)",
+          "z-index": zindex,
+          "transform-origin-x": transformOrigin,
+        });
+      });
+    };
 
-const particles = [];
-const numParticles = 450;
+    var calculateX = function(position, sign, width) {
+      switch (sign) {
+        case 1:
+        case 0:
+          return position - width / 2;
+        case -1:
+          return position - width / 2;
+      }
+    };
 
-for (let i = 0; i < numParticles; i++) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    const speedX = (Math.random() - 0.9) * 0.2;
-    const speedY = (Math.random() - 0.5) * 1.2;
-    particles.push(new Particle(x, y, speedX, speedY));
-}
+    var imageSize = function() {
+      return $slider.width() / 3;
+    };
 
-const workshopDetails = "Workshop\n\n\nDetails"; // Added line break
-const workshopFont = "120px Monoton, cursive";
-const workshopColor = "#ffffff"; // White color
+    var recalculateSizes = function() {
+      sliderWidth = $slider.width();
+      position();
+    };
 
-function drawWorkshopDetails() {
-    ctx.font = workshopFont;
-    ctx.fillStyle = workshopColor;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle"; // Center vertically
-    const lines = workshopDetails.split('\n');
-    for (let i = 0; i < lines.length; i++) {
-        const yPos = canvas.height / 2 + (i - (lines.length - 1) / 2) * 60; // Adjusted vertical position
-        ctx.fillText(lines[i], canvas.width / 2, yPos);
-    }
-}
+    var clickedImage = function() {
+      $(".active").removeClass("active");
+      $(this).addClass("active");
+      position();
+    };
 
-function animate() {
-    requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var addEvents = function() {
+      $(window).resize(recalculateSizes);
+      $(document).on("click", ".slide", clickedImage);
+    };
 
-    for (const particle of particles) {
-        particle.update();
-        particle.draw();
-    }
+    return {
+      init: function() {
+        on();
+        addEvents();
+      },
+      showFirstSlide: function() {
+        $(".slide").removeClass("active"); // Remove "active" class from all slides
+        $(".slide:first-child").addClass("active"); // Add "active" class to the first slide
+        position();
+      },
+    };
+  })();
 
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 110) {
-                ctx.strokeStyle = "#0058a2";
-                ctx.lineWidth = 0.2;
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
-            }
-        }
-    }
-
-    drawWorkshopDetails(); // Move text rendering to the end
-}
-
-animate();
-
-
+  function showFirstSlide() {
+    Slider.showFirstSlide();
+  }

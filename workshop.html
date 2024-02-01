@@ -270,46 +270,113 @@
         
         <div id="popup" class="popup">
           <div class="popup-content">
-             
+              <a class="popup-title" id="popup-title"></a>
               <div id="popup-description" class="popup-description"></div>
               <img id="popup-image" class="popup-image" src="" alt="">
-              <span class="close-popup">&times;</span>
+              <div class="additional-boxes">
+                  <div class="box1"></div>
+                  <div class="box2"></div>
+              </div>
+              <span class="close-popup" onclick="closePopup()">Close</span>
           </div>
-          
       </div>
 
 
       <script>
-          $(document).ready(function () {
-        $(".view-more-button").on("click", function () {
-            var day = $(this).closest(".slide").find(".slide-Title").text();
-            var title = $(this).siblings(".slide-description").find(".mainslidertitle").text();
-            var description = $(this).siblings(".slide-description").find("li").text();
-            var imagePath;
-           
+         $(document).ready(function () {
+    $(".view-more-button").on("click", function () {
+        var day = $(this).closest(".slide").find(".slide-Title").text();
+        var title = $(this).siblings(".slide-description").find(".mainslidertitle").text();
+        var description;
+        var imagePath;
+        var box1Content;
+        var box2Content;
 
-            // Set image path and information based on the day
-            if (day === "Day 1") {
-                imagePath = "http://t3.gstatic.com/images?q=tbn:ANd9GcSoorKS-3CxgdJFB3QNWhu_L7DTYVdgGMybnW1PUwgcoqmRLmO8N8D7yfBGzC_BZuLlBkB_IVLnv2WWgus4vlNRn3su7MRHDChgWqfXadI";
-                description = "Looking for frfsdfsdfsdee Python Flask demonstrations? Look no further! This course offers a comprehensive guide to Flask, a popular web framework for Python. With this course, you’ll learn how to build and deploy web applications using Flask.";
-            } else if (day === "Day 2") {
-                imagePath = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tvnz.co.nz%2Fshows%2Fdog-squad-puppy-school%2Fthe-breeds&psig=AOvVaw0xh-2jxStFCdWa4PVSPh-C&ust=1706705083601000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCNDU8IWShYQDFQAAAAAdAAAAABAJ";
-                description = "Python is a versatile and powerful programming language that is easy to learn and use. It is widely used in various industries and job roles, including web development, data analysis, artificial intelligence, and more. By learning Python, you open up a world of opportunities and career paths.";
-            }
+        // Set image path and information based on the day
+        if (day === "Day 1") {
+          imagePath = "img/encipher/sahil.jpeg";
+          description = "Explore the basics of web development, covering both frontend and backend techniques. Gain hands-on experience building a simple website using HTML, CSS, JavaScript, PHP, and MySQL. Understand the foundations of creating dynamic and interactive web applications.";
+          box1Content = "Sahil Karande";
+          box2Content = "Additional content for Day 1 Box 2";
+        } else if (day === "Day 2") {
+            imagePath = "img/encipher/jyoti.jpeg";
+            description = "Basics of ADAS technology with respect to its usage and current development. Gain knowledge of technological trends and new concepts of learning and field. Get knowledge of real time technical things, rather than working on old trends of college. No prerequisite requiredm its information seminar on career and doubt session with respect to python and technical trends.";
+            box1Content = "Jyotiraditya Parihar";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 3") {
+            imagePath = "img/encipher/ayush.jpeg";
+            description = "Linux commands";
+            box1Content = "Ayush Gupta";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 4") {
+            imagePath = "img/encipher/vishal.jpeg";
+            description = "Linux basics commands and tools nmapm metasploit framework and burpsuite. Students will be familar with the linux OS and how to test the website for the various vulnerability. Virtual box with linux installed";
+            box1Content = "Vishal Injewar";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 5") {
+            imagePath = "img/encipher/rushi.jpeg";
+            description = "3 tier architecture of Wordpress and mysql";
+            box1Content = "Rushi Wagh";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 6") {
+            imagePath = "img/encipher/rushi.jpeg";
+            description = "Configure Webserver";
+            box1Content = "Rushi Wagh";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 7") {
+            imagePath = "img/encipher/rushi.jpeg";
+            description = "Master-slave architecture";
+            box1Content = "Rushi Wagh";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 8") {
+            imagePath = "img/encipher/shri.jpeg";
+            description = "";
+            box1Content = "Shrinidhee Pande";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 9") {
+            imagePath = "img/encipher/shantanu.jpeg";
+            description = "Tools and methodologies - Pen testing. Industry terms, tools and methods. Threat and vulnerability management. How to analyze a threat and how to generate a threat report";
+            box1Content = "Shantanu Jangle";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
+        else if (day === "Day 10") {
+            imagePath = "img/encipher/vishal.jpeg";
+            description = "";
+            box1Content = "Vishal  Injewar";
+            box2Content = "Additional content for Day 1 Box 2";
+        }
 
-            $("#popup-title").text(day + ": " + title);
-            $("#popup-description").html(description);
-            
-            // Set the image source dynamically
-            $("#popup-image").attr("src", imagePath);
+        // Set the title of day, title, and description in the popup
+        $(".popup-title-top").html("<strong>" + day + ": " + title + "</strong><br>" + description);
+        $("#popup-title").text(day + ": " + title);
+        $("#popup-description").html(description);
 
-            $(".popup").fadeIn();
-        });
+        // Set the image source dynamically
+        $("#popup-image").attr("src", imagePath);
 
-        $(".close-popup").on("click", function () {
-            $(".popup").fadeOut();
-        });
+        // Set content for additional boxes
+        $(".box1").text(box1Content);
+        $(".box2").text(box2Content);
+
+        $(".popup").fadeIn();
     });
+
+    $(".close-popup").on("click", function () {
+        closePopup();
+    });
+});
+
+function closePopup() {
+    $(".popup").fadeOut();
+}
+
       </script>
         
         <style>
@@ -324,26 +391,52 @@
         margin-bottom: 15px; /* Adjust spacing as needed */
     }
 
+    .popup-title {
+      color: #FF4533;
+      font-size: 120px;
+    }
+
     .popup-circle-image {
         width: 100%; /* Make sure the image fills the circular container */
         height: auto;
         border-radius: 50%;
     }
            /* Your existing styles */
-    /* Your existing styles */
     .close-popup {
+    position: absolute;
+    top: 400%;
+    right: 10px;
+    width: 100px;
+    height: 20px;
+    padding: 0;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #FF4533;
+    border: none;
+    background: transparent;
+    outline: none;
+    transition: color 0.3s ease-in-out;
+    }
+
+    .close-popup::before,
+    .close-popup::after {
+        content: "";
         position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        color: #fff;
-        transition: color 0.3s ease-in-out;
-        z-index: 999; /* Make sure the close button is above other elements */
+        top: 400%;
+        left: 50%;
+        width: 70%;
+        height: 3px;
+        background: #FF4533;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .close-popup::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
 
     .close-popup:hover {
-        color: #000;
+        color: black;
     }
 
 .popup {
@@ -387,7 +480,7 @@
 }
 .popup-image {
     width: 20%; /* Set the image width to 100% of the container */
-    border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+    border-radius: 100%; /* Optional: Add border-radius for rounded corners */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Optional: Add box-shadow for a subtle shadow effect */
     margin-top: 20px; /* Adjust margin-top for spacing */
 }

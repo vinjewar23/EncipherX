@@ -6980,6 +6980,8 @@ img + .custom-title {
     padding: 0;
     box-sizing: border-box;
     font-family: "Cormorant", serif;
+    font-size: 90%;
+    color: whitesmoke;
   }
 
   .parallax-container {

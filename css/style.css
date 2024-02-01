@@ -6413,7 +6413,7 @@ b{
 	content: '';
 	display: block;
 	position: absolute;
-	border: 7px solid rgba(255, 255, 255, 0.1);
+	border: 7px solid rgba(230, 30, 0);
 	top: -22px;
 	left: 20px;
 	right: 20px;

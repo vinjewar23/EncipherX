@@ -190,7 +190,9 @@ a:hover {
 
 a:not([href]):not([tabindex]) {
     color: inherit;
+    font-size: 150%;
     text-decoration: none
+    
 }
 
 a:not([href]):not([tabindex]):focus,

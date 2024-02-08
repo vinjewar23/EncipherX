@@ -6403,6 +6403,7 @@ b{
 	margin-right: auto;
 	position: relative;
 	z-index: 0;
+	text-align:center;
 }
 
 .post-classic:hover::before {

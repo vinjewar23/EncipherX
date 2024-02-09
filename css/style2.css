@@ -888,7 +888,7 @@ html [class*='section-'].section-bottom-0 {
 }
 
 .bg-default {
-	background-color: #222d4f;
+	background-color: #000000;
 }
 
 .bg-default:not([style*="background-"]) + .bg-default:not([style*="background-"]) {
@@ -1717,7 +1717,7 @@ html.tablet .ui-to-top {
 	left: 0;
 	width: 100%;
 	max-width: 1200px;
-	background: #233447;
+	background: #000000;
 	overflow: hidden;
 }
 
@@ -2320,7 +2320,7 @@ html.tablet .ui-to-top {
 }
 
 .rd-navbar-fixed .rd-navbar-collapse {
-	background-color: #222d4f;
+	background-color: #000000;
 	box-shadow: 0 0 22px -4px rgba(0, 0, 0, 0.17);
 }
 
@@ -2334,7 +2334,7 @@ html.rd-navbar-fixed-linked .page {
 */
 .rd-navbar-sidebar {
 	display: block;
-	background: #222d4f;
+	background: #000000;
 }
 
 .rd-navbar-sidebar .rd-navbar-main-outer {
@@ -2813,7 +2813,7 @@ html.rd-navbar-fixed-linked .page {
 }
 
 .rd-navbar-classic.rd-navbar-static .rd-navbar-megamenu {
-	background: #233447;
+	background: #000000;
 }
 
 .rd-navbar-classic.rd-navbar-static .rd-megamenu-item + .rd-megamenu-item .rd-megamenu-list {
@@ -2821,7 +2821,7 @@ html.rd-navbar-fixed-linked .page {
 }
 
 .rd-navbar-classic.rd-navbar-static .rd-megamenu-title {
-	background-color: #1f2e40;
+	background-color: #000000;
 	padding: 20px 31px;
 }
 
@@ -2879,11 +2879,11 @@ html.rd-navbar-fixed-linked .page {
 * =====================================================
 */
 .rd-navbar-modern {
-	background-color: #1f2f45;
+	background-color: #000000;
 }
 
 .rd-navbar-modern.rd-navbar-static {
-	background-color: #1f2f45;
+	background-color: #000000;
 }
 
 .rd-navbar-modern.rd-navbar-static .rd-nav-item.focus .rd-nav-link::before, .rd-navbar-modern.rd-navbar-static .rd-nav-item.opened .rd-nav-link::before {

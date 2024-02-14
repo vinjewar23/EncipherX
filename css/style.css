@@ -7404,6 +7404,31 @@ button:hover::after {
       color: #f79f24; }
 
 
+/* youtube video*/
+.youtube-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            overflow: hidden;
+        }
+        
+        .youtube-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Media Query for desktop */
+        @media (min-width: 768px) {
+            .youtube-frame {
+                max-width: 1110px;
+                margin: 0 auto;
+            }
+        }
+
+
 
 
       
